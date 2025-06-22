@@ -53,10 +53,7 @@ public class ContenidoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarContenido(@PathVariable int id){
-        if(contenidoService.eliminarContenido(id)){
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
+        contenidoService.eliminarContenido(id);
+        return ResponseEntity.noContent().build();
+}
 }

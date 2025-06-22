@@ -54,11 +54,8 @@ public class ModuloController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarModulo(@PathVariable int id){
-        if(moduloService.eliminarModulo(id)){
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+        moduloService.eliminarModulo(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PatchMapping("/{id}/modificar/visibilidad")

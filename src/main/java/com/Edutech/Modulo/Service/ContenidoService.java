@@ -1,5 +1,6 @@
 package com.Edutech.Modulo.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,10 @@ public class ContenidoService {
         return contenidoRepository.findById(id);
     }
 
+    public List<Contenido> listar(){
+        return contenidoRepository.findAll();
+    }
+
     public Optional<Contenido> actualizarContenido(int id, Contenido updatedContenido){
         return contenidoRepository.findById(id).map(contenido -> {
             contenido.setTitulo(updatedContenido.getTitulo());
@@ -33,11 +38,7 @@ public class ContenidoService {
         });
     }
 
-    public boolean eliminarContenido(int id){
-        if(contenidoRepository.existsById(id)){
-            contenidoRepository.deleteById(id);
-            return true;
-        }
-        return false;
+    public void eliminarContenido(int id){
+        contenidoRepository.deleteById(id);
     }
 }

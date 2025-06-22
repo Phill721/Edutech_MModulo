@@ -1,5 +1,6 @@
 package com.Edutech.Modulo.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class ModuloService {
     public Optional<Modulo> buscarxid(int id){
         return moduloRepository.findById(id);
     }
+
+    public List<Modulo> listar(){
+        return moduloRepository.findAll();
+    }
     public Optional<Modulo> actualizarModulo(int id, Modulo updatedModulo){
         return moduloRepository.findById(id).map(modulo -> {
             modulo.setId(updatedModulo.getId());
@@ -32,12 +37,8 @@ public class ModuloService {
         });
     }
 
-    public boolean eliminarModulo(int id){
-        if(moduloRepository.existsById(id)){
-            moduloRepository.deleteById(id);
-            return true;
-        }
-        return false;
+    public void eliminarModulo(int id){
+        moduloRepository.deleteById(id);
     }
 
     public boolean cambiarVisibilidad(int id){
